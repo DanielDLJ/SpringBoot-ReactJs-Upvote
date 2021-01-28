@@ -2,6 +2,7 @@ package com.DanielDLJ.SpringBootUpvote.model;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.neo4j.core.schema.GeneratedValue;
 import org.springframework.data.neo4j.core.schema.Id;
 import org.springframework.data.neo4j.core.schema.Node;
@@ -18,11 +19,17 @@ public class Post {
 
     private String content = "";
     private String date = "";
+    @Transient
+    private boolean loggedUserLiked = false;
 
 
     @Relationship(type = "Like", direction = Relationship.Direction.INCOMING)
     @JsonIgnoreProperties("liked_posts")
     private List<User> liked_users = new ArrayList<>();
+
+    @JsonIgnoreProperties("liked_posts")
+    @Relationship(type = "wrote", direction = Relationship.Direction.INCOMING)
+    private User wrote_user = new User();
 
     public Post() {
     }
@@ -47,5 +54,15 @@ public class Post {
     public List<User> getLiked_users() { return liked_users; }
 
     public void setLiked_users(List<User> liked_users) { this.liked_users = liked_users; }
+
+    public User getWrote_user() { return wrote_user; }
+
+    public void setWrote_user(User wrote_user) { this.wrote_user = wrote_user; }
+
+    public boolean isLoggedUserLiked() { return loggedUserLiked; }
+
+    public void setLoggedUserLiked(boolean loggedUserLiked) { this.loggedUserLiked = loggedUserLiked; }
+
+    public boolean containsUserIn_liked_users(final Long id){ return liked_users.stream().anyMatch(o -> o.getId().equals(id)); }
 }
 
