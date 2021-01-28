@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Node
+@JsonIgnoreProperties("liked_posts")
 public class Post {
     @Id
     @GeneratedValue
@@ -24,10 +25,8 @@ public class Post {
 
 
     @Relationship(type = "Like", direction = Relationship.Direction.INCOMING)
-    @JsonIgnoreProperties("liked_posts")
     private List<User> liked_users = new ArrayList<>();
 
-    @JsonIgnoreProperties("liked_posts")
     @Relationship(type = "wrote", direction = Relationship.Direction.INCOMING)
     private User wrote_user = new User();
 
