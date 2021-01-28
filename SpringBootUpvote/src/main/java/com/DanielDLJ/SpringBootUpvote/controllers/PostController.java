@@ -39,10 +39,19 @@ public class PostController {
         Date date = new Date();
         String newDate = new SimpleDateFormat("yyyy-MM-dd HH-mm-ss").format(date);
 
+        //create
         postRepository.createNewPost(requestData.getUser().getId(),
                 requestData.getPost().getContent(),
                 newDate);
-        return postRepository.findAll(Sort.by(Sort.Direction.DESC, "date"));
+        //return node
+        Iterable<Post> posts = postRepository.findAll(Sort.by(Sort.Direction.DESC, "date"));
+        for (Post item : posts) {
+            if (item.containsUserIn_liked_users(requestData.getUser().getId())) {
+                item.setLoggedUserLiked(true);
+            }
+            System.out.println(item);
+        }
+        return posts;
     }
 
     @RequestMapping(
