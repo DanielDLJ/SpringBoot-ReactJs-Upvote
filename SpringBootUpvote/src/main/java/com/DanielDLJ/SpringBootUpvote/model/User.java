@@ -11,6 +11,7 @@ import java.util.List;
 
 
 @Node
+@JsonIgnoreProperties("liked_users")
 public class User {
     @Id
     @GeneratedValue
@@ -20,17 +21,16 @@ public class User {
     private String password = "";
 
 
-    @Relationship(type = "Like")
-    @JsonIgnoreProperties("liked_users")
-    private List<Post> liked_posts = new ArrayList<>();
+//    @Relationship(type = "Like")
+//    @JsonIgnoreProperties("liked_users")
+//    private List<Post> liked_posts = new ArrayList<>();
 
     public User() {
     }
 
-    public User(String username, String password, List<Post> liked_posts) {
+    public User(String username, String password) {
         this.username = username;
         this.password = password;
-        this.liked_posts = liked_posts;
     }
 
     public Long getId() { return id; }
@@ -44,9 +44,5 @@ public class User {
     public String getPassword() { return password; }
 
     public void setPassword(String password) { this.password = password; }
-
-    public List<Post> getLiked_posts() { return liked_posts; }
-
-    public void setLiked_posts(List<Post> liked_posts) { this.liked_posts = liked_posts; }
 
 }
