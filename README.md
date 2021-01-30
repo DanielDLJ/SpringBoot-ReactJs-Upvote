@@ -1,4 +1,3 @@
-SpringBoot ReactJs Upvote
 # Segware - DEV FullStack Code Challenge
 
 This project is a SpringBoot REST API and Web developed to the Segware.
