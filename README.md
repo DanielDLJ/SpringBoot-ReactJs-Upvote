@@ -16,7 +16,7 @@ Follow this instructions to get a copy of this project in your local env to deve
 To run the project you will need:
 - [NodeJS](https://nodejs.org/en/download/)
 - [Docker](https://www.docker.com/products/docker-desktop)
-- [IntelliJ IDEA](https://www.docker.com/products/docker-desktop)
+- [IntelliJ IDEA](https://www.jetbrains.com/pt-br/idea/download/)
 
 ### Installing Dependencies
 Clone this repo:
