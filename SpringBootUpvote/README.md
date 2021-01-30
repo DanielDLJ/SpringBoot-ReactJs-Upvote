@@ -1,3 +1,3 @@
 # Segware - DEV FullStack Code Challenge
 
-ReactJs
+SpringBoot REST API
